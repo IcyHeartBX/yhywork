@@ -1,4 +1,4 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <mysql.h>
@@ -28,18 +28,18 @@ int ExecuteQuery(MYSQL * mysql ,char * sql,MYSQL_RES ** rs);
 
 int ReturnContent(void)
 {
-	int				ret = 0 ;						//·µ»Ø½á¹û
-	MYSQL			* mysql = NULL ;				//Êı¾İ¿âÁ¬½ÓÖ¸Õë
-	MYSQL_RES		* pRs = NULL ;					//²éÑ¯½á¹û¼¯Ö¸Õë
-	MYSQL_ROW		row = NULL ;					//½á¹û¼¯ĞĞÊı¾İ
+	int				ret = 0 ;						//è¿”å›ç»“æœ
+	MYSQL			* mysql = NULL ;				//æ•°æ®åº“è¿æ¥æŒ‡é’ˆ
+	MYSQL_RES		* pRs = NULL ;					//æŸ¥è¯¢ç»“æœé›†æŒ‡é’ˆ
+	MYSQL_ROW		row = NULL ;					//ç»“æœé›†è¡Œæ•°æ®
 	char			idBuff[64] = {0};				//id
-	char			sqlBuff[RETURN_CONTENT_LEN] = {0};			//sqlÓï¾ä
+	char			sqlBuff[RETURN_CONTENT_LEN] = {0};			//sqlè¯­å¥
 	if(cgiFormString("id",idBuff,sizeof(idBuff)) != cgiFormSuccess) 
 	{
 		fprintf(cgiOut,"id is NULL");
 		goto END ;
 	}
-	//³õÊ¼»¯Êı¾İ¿â
+	//åˆå§‹åŒ–æ•°æ®åº“
 	mysql = mysql_init(0);
 	if(mysql == NULL)
 	{
@@ -47,14 +47,14 @@ int ReturnContent(void)
 		printf("Func mian() err:%d,msg:%s\n",ret,mysql_error(mysql));
 		goto END ;
 	}
-	//Á¬½ÓÊı¾İ¿â
-	if(!mysql_real_connect(mysql,DB_IP,DB_USER,DB_PASSWORD,DB_NAME,0,0,0)) //Á¬½ÓÊ§°Ü
+	//è¿æ¥æ•°æ®åº“
+	if(!mysql_real_connect(mysql,DB_IP,DB_USER,DB_PASSWORD,DB_NAME,0,0,0)) //è¿æ¥å¤±è´¥
 	{
 		ret = -2 ;
-		printf("Func mysql_real_connect() err:%d,(ÎŞ·¨Á¬½ÓÊı¾İ¿â:%s)\n",ret,mysql_error(mysql));
+		printf("Func mysql_real_connect() err:%d,(æ— æ³•è¿æ¥æ•°æ®åº“:%s)\n",ret,mysql_error(mysql));
 		goto END ;
 	}
-	//ÉèÖÃ±àÂë·½Ê½
+	//è®¾ç½®ç¼–ç æ–¹å¼
 	ret = ExecuteNonQuery(mysql,"set names utf8");
 	if(ret != 0)
 	{
@@ -62,7 +62,7 @@ int ReturnContent(void)
 		goto END ;
 	}
 	
-	//²éÑ¯Êı¾İ¿âÊı¾İ
+	//æŸ¥è¯¢æ•°æ®åº“æ•°æ®
 	sprintf(sqlBuff,"SELECT ReturnContent FROM T_CommonInterface WHERE id = %s",idBuff);
 	ret = ExecuteQuery(mysql,sqlBuff,&pRs);
 	if(ret != 0)
@@ -71,7 +71,7 @@ int ReturnContent(void)
 		goto END ;
 	}
 
-	//±éÀú´òÓ¡Êı¾İ
+	//éå†æ‰“å°æ•°æ®
 	while(row = mysql_fetch_row(pRs))
 	{
 		char * pReturnContent = row[0];
@@ -79,7 +79,7 @@ int ReturnContent(void)
 	}
 	
 END:
-	//ÊÍ·Å½á¹û¼¯
+	//é‡Šæ”¾ç»“æœé›†
 	if(pRs != NULL)
 	{
 		mysql_free_result(pRs);
@@ -114,7 +114,7 @@ int ExecuteQuery(MYSQL * mysql,char * sql,MYSQL_RES ** rs)
 {
 	MYSQL_RES * pRs = NULL;
 	int ret = 0;
-	//°²È«¼ì²é
+	//å®‰å…¨æ£€æŸ¥
 	if(mysql == NULL || sql == NULL || rs == NULL)
 	{
 		ret = -1 ;

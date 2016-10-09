@@ -11,6 +11,7 @@
 #define	 DB_NAME			"yhy"
 #define  RETURN_CONTENT_LEN 10240
 #define  ID_BUFF_LEN        16
+#define  WEB_DOMAIN		"192.168.24.129"
 
 
 int cgiMain(void)
@@ -153,13 +154,11 @@ int PrintUserInfo(){
 		char * pId = row[0];
 		if(id <= 0)
 		{
-			fprintf(cgiOut,"<h2>增加接口成功(27网段访问):<a href='http://192.168.27.170:803/cgi-bin/CommonInterface.cgi?id=%s'>http://192.168.27.170:803/cgi-bin/CommonInterface.cgi?id=%s</a></h2></br>",pId,pId);
-			fprintf(cgiOut,"<h2>增加接口成功(50网段访问(qiqiDev)):<a href='http://192.168.50.180/cgi-bin/CommonInterface.cgi?id=%s'>http://192.168.50.180/cgi-bin/CommonInterface.cgi?id=%s</a></h2></br>",pId,pId);
+			fprintf(cgiOut,"<h2>增加接口成功:<a href='http://%s/cgi-bin/CommonInterface.cgi?id=%s'>http://%s/cgi-bin/CommonInterface.cgi?id=%s</a></h2></br>",WEB_DOMAIN,pId,WEB_DOMAIN,pId);
 		}
 		else
 		{
-			fprintf(cgiOut,"<h2>修改接口成功(27网段访问):<a href='http://192.168.27.170:803/cgi-bin/CommonInterface.cgi?id=%s'>http://192.168.27.170:803/cgi-bin/CommonInterface.cgi?id=%s</a></h2></br>",pId,pId);
-			fprintf(cgiOut,"<h2>修改接口成功(50网段访问(qiqiDev)):<a href='http://192.168.50.180/cgi-bin/CommonInterface.cgi?id=%s'>http://192.168.50.180/cgi-bin/CommonInterface.cgi?id=%s</a></h2></br>",pId,pId);
+			fprintf(cgiOut,"<h2>修改接口成功:<a href='http://%s/cgi-bin/CommonInterface.cgi?id=%s'>http://%s/cgi-bin/CommonInterface.cgi?id=%s</a></h2></br>",WEB_DOMAIN,pId,WEB_DOMAIN,pId);
 		}
 		
 	}
