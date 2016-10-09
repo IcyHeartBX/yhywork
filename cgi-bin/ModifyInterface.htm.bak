@@ -1,0 +1,41 @@
+<HTML>
+<HEAD>
+<TITLE></TITLE>
+</HEAD>
+<BODY>
+<!--验证信息-->
+<!-- 
+<script language="javaScript">
+	function validate(f) {
+		if(!(/\w+/.test(f.returnContent.value))) {
+			alert("输入的信息不能为空！！") ;
+			f.info.focus();
+			return false ;
+		}
+		return true ;
+	}
+</script>
+-->
+  <h3> <img width="200" height="70" src="../yhy_logo.jpg" alt="怡红院接口配置"  align="center"/>怡红院修改接口</h3>
+   <form action="InterfaceCfg.cgi"method="post"  onSubmit="return validate(this)"> 
+    <h4>请输入您要修改的接口ID==>/cgi-bin/CommonInterface.cgi?id=<input type="text" name="id"/></h4>
+    <table border="1" >
+        <tr>
+				<td bgcolor="#32dd">接口返回数据</td>
+				<td bgcolor="#aacc">
+					<textarea name='returnContent' rows="30" cols="100">请填入接口返回的数据，不可为空！</textarea>
+				</td>
+		</tr>
+        <tr">
+				<td bgcolor="#aa44" colspan="2" align="center">
+                    <input type="submit" value="增加接口" name="modifyBtn"/>
+                </td>
+                
+                
+				
+		</tr>
+    </table>
+    </form>
+
+</BODY>
+</HTML>
